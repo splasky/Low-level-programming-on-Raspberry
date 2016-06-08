@@ -1,6 +1,6 @@
 # 'make depend' use makedepend to automatically generate dependencies
 CC = gcc
-CFLAGS = -g -Wall -std=c99 -Wextra
+FLAGS = -g -Wall -std=c99 -Wextra
 
 # define any directories containing header files
 INCLUDES = -Isrc/ #-I/home/newhall/include -I../include 
@@ -9,7 +9,7 @@ INCLUDES = -Isrc/ #-I/home/newhall/include -I../include
 LFLAGS = # -L/home/newhall/lib -L../lib 
 
 # define any libraries to link into executable
-LIBS = # -lmylib -lm 
+LIBS = build/-lRPI # -lmylib -lm 
 
 # define test source
 TEST_SRC = $(wildcard tests/*_tests.c)
@@ -20,16 +20,16 @@ TARGET = build/libRPI.a
 SRCS = $(wildcard src/*.c)
 OBJS = $(SRCS:.c=.o)
 
-dev: CFLAGS = -g -Wall -Isrc -Wextra $(OPTFLAGS)
+dev: CFLAGS = $(FLAGS) 
 dev: all
 
-$(TARGET): CFLAGS += - fPIC
+$(TARGET): CFLAGS += -fPIC
 $(TARGET): build $(OBJS)
 	ar rcs $@ $(OBJS)
 	ranlib $@
 
-#all: $(TARGET) tests 
-#	@ echo simple compiler named ADXL345 has been compiled
+all: $(TARGET) tests 
+	@ echo simple compiler named ADXL345 has been compiled
 
 build:
 	@mkdir -p build
@@ -50,7 +50,7 @@ valgrind:
 #	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -rf build $(OBJECTS) $(TESTS)
+	rm -rf build $(OBJS) $(TESTS)
 	rm -f tests/tests.log
 depend:
 	makedepend $(INCLUDES) $^

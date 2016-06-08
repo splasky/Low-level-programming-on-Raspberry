@@ -1,6 +1,7 @@
 #include "RPI.h"
 #include <stdio.h>
 
+
 int main(){
     if(map_peripheral(&gpio) ==-1){
         printf("Failed to map the physical GPIO registers into the vitural memory space.\n");
@@ -19,3 +20,4 @@ int main(){
     }
     return 0;
 }
+
