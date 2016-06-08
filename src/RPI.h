@@ -15,8 +15,8 @@
 #include <unistd.h>
 
 // Define which Raspberry Pi board are you using. Take care to have defined only one at time.
-#define RPI
-//#define RPI2
+//#define RPI
+#define RPI2
 
 #ifdef RPI
 #define BCM2708_PERI_BASE       0x20000000
@@ -55,11 +55,11 @@ extern struct bcm2835_peripheral gpio;
 extern struct bcm2835_peripheral bsc0;
 
 // I2C macros
-#define BSC0_C        	*(bsc0.addr + 0x00)
-#define BSC0_S        	*(bsc0.addr + 0x01)
-#define BSC0_DLEN    	*(bsc0.addr + 0x02)
-#define BSC0_A        	*(bsc0.addr + 0x03)
-#define BSC0_FIFO    	*(bsc0.addr + 0x04)
+#define BSC0_C        	*(bsc0.addr + 0x0)
+#define BSC0_S        	*(bsc0.addr + 0x4)
+#define BSC0_DLEN    	*(bsc0.addr + 0x8)
+#define BSC0_A        	*(bsc0.addr + 0xc)
+#define BSC0_FIFO    	*(bsc0.addr + 0x10)
 
 #define BSC_C_I2CEN    	(1 << 15)
 #define BSC_C_INTR    	(1 << 10)
@@ -72,7 +72,7 @@ extern struct bcm2835_peripheral bsc0;
 #define START_READ    	BSC_C_I2CEN|BSC_C_ST|BSC_C_CLEAR|BSC_C_READ
 #define START_WRITE   	BSC_C_I2CEN|BSC_C_ST
 
-#define BSC_S_CLKT	    (1 << 9)
+#define BSC_S_CLKT	(1 << 9)
 #define BSC_S_ERR    	(1 << 8)
 #define BSC_S_RXF    	(1 << 7)
 #define BSC_S_TXE    	(1 << 6)

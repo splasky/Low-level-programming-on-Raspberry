@@ -1,5 +1,5 @@
 # 'make depend' use makedepend to automatically generate dependencies
-MAIN = ADXL345
+MAIN = MainADXL345
 CC = gcc
 CFLAGS = -g -Wall -std=c99 -Wextra
 
@@ -12,7 +12,7 @@ LFLAGS = # -L/home/newhall/lib -L../lib
 # define any libraries to link into executable
 LIBS = # -lmylib -lm 
 
-SRCS = MainADXL345.c ADXL345.c RPI.c
+SRCS = $(wildcard src/*.c)
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: clean depend
@@ -27,6 +27,7 @@ $(MAIN): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) *.o *~ $(MAIN)
+	$(RM) src/*.o *~ $(MAIN)
+
 depend:
 	makedepend $(INCLUDES) $^

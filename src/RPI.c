@@ -66,24 +66,8 @@ void wait_i2c_done() {
 
 void i2c_init()
 {
-    INP_GPIO(0);
-    SET_GPIO_ALT(0, 0);
-    INP_GPIO(1);
-    SET_GPIO_ALT(1, 0);
+    INP_GPIO(2);
+    SET_GPIO_ALT(2, 0);
+    INP_GPIO(3);
+    SET_GPIO_ALT(3, 0);
 } 
-
-// Priority 
-
-int SetProgramPriority(int priorityLevel)
-{
-    struct sched_param sched;
-
-    memset (&sched, 0, sizeof(sched));
-
-    if (priorityLevel > sched_get_priority_max (SCHED_RR))
-        priorityLevel = sched_get_priority_max (SCHED_RR);
-
-    sched.sched_priority = priorityLevel;
-
-    return sched_setscheduler (0, SCHED_RR, &sched);
-}

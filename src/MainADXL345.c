@@ -1,8 +1,7 @@
 #include "ADXL345.h"
+#include "RPI.h"
 #include <stdlib.h>
 #include <stdlib.h>
-#include <time.h>
-
 int main(int argc, char **argv)
 {
     // Map memory areas 
@@ -15,8 +14,11 @@ int main(int argc, char **argv)
     i2c_init();
 		
     ADXL345_Init();
+    
     printf("ADXL345 initialized.\n");
 
+	dump_bsc_status();
+    
     short accData[3];
 
     int i=0;
@@ -24,9 +26,10 @@ int main(int argc, char **argv)
     {
         // Read ADXL345 sensor
         ADXL345_Read(&accData[0]);
-        print("Acclerometer x: d",accData[0]);        
-        print("Acclerometer y: d",accData[1]);        
-        print("Acclerometer z: d",accData[2]);        
+        printf("Acclerometer x: %d",accData[0]);        
+        printf("Acclerometer y: %d",accData[1]);        
+        printf("Acclerometer z: %d",accData[2]);   
+        sleep(5);     
     }
     return 0;
-}
+}*/

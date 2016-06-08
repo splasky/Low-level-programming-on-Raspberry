@@ -13,9 +13,9 @@ int main(){
 
     for(int i=0; i<10; i++){
         GPIO_SET=1<<4;
-        sleep(1);
+        sleep(5);
         GPIO_CLR=1<<4;
-        sleep(1);
+        sleep(5);
     }
     return 0;
 }
