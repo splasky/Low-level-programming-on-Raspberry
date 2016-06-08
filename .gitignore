@@ -1,2 +1,3 @@
 tmp/*
-*.o
+src/*.o
+src/*.log

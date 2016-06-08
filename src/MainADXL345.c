@@ -2,7 +2,9 @@
 #include "RPI.h"
 #include <stdlib.h>
 #include <stdlib.h>
-int main(int argc, char **argv)
+
+
+/*int main(int argc, char **argv)
 {
     // Map memory areas 
     if(map_peripheral(&gpio) == -1){
@@ -10,7 +12,7 @@ int main(int argc, char **argv)
         return -1;
     }
 
-     /* BSC0 is on GPIO 0 & 1 */
+    // BSC0 is on GPIO 0 & 1 
     i2c_init();
 		
     ADXL345_Init();
@@ -32,4 +34,5 @@ int main(int argc, char **argv)
         sleep(5);     
     }
     return 0;
-}*/
+}
+*/

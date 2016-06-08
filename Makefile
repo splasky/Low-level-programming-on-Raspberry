@@ -1,5 +1,4 @@
 # 'make depend' use makedepend to automatically generate dependencies
-MAIN = MainADXL345
 CC = gcc
 CFLAGS = -g -Wall -std=c99 -Wextra
 
@@ -12,22 +11,47 @@ LFLAGS = # -L/home/newhall/lib -L../lib
 # define any libraries to link into executable
 LIBS = # -lmylib -lm 
 
+# define test source
+TEST_SRC = $(wildcard tests/*_tests.c)
+TEST = $(patsubst %.c,%,$(TEST_SRC)) 
+
+TARGET = build/libRPI.a
+
 SRCS = $(wildcard src/*.c)
 OBJS = $(SRCS:.c=.o)
 
-.PHONY: clean depend
+dev: CFLAGS = -g -Wall -Isrc -Wextra $(OPTFLAGS)
+dev: all
 
-all: $(MAIN)
-	@ echo simple compiler named ADXL345 has been compiled
+$(TARGET): CFLAGS += - fPIC
+$(TARGET): build $(OBJS)
+	ar rcs $@ $(OBJS)
+	ranlib $@
 
-$(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
+#all: $(TARGET) tests 
+#	@ echo simple compiler named ADXL345 has been compiled
 
-.c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+build:
+	@mkdir -p build
+	@mkdir -p bin
+
+.PHONY: clean depend tests
+
+tests:LDLIBS= -L./build -lRPI
+tests:$(TEST)
+	sh ./tests/runtests.sh
+valgrind:
+	VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" $(MAKE)
+	
+#$(MAIN): $(OBJS)
+#	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
+
+#.c.o:
+#	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) src/*.o *~ $(MAIN)
-
+	rm -rf build $(OBJECTS) $(TESTS)
+	rm -f tests/tests.log
 depend:
 	makedepend $(INCLUDES) $^
+
