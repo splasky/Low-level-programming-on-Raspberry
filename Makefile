@@ -50,7 +50,7 @@ TestADXL345:
 	$(CC) $(FLAGS) $(INCLUDES) ./bin/MainADXL345.c $(OBJS) -o ./bin/testADXL345
 
 Up:
-	scp bin/testADXL345 Rpi:~/workspace/rpi/bin 
+	scp bin/testADXL345 Rpi3:~/workspace/rpi/bin 
 #$(MAIN): $(OBJS)
 #	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
