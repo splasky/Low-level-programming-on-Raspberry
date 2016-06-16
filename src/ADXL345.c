@@ -35,13 +35,13 @@ void ADXL345_Read(short *accData)
     BSC0_C = START_READ;   	// Start Read after clearing FIFO (see #define)
 
     wait_i2c_done();
-
-    printf("x0:%d",BSC0_FIFO = 0x32);
-    printf("x1:%d",BSC0_FIFO = 0x33);
-    printf("y0:%d",BSC0_FIFO = 0x34);
-    printf("y1:%d",BSC0_FIFO = 0x35);
-    printf("z0:%d",BSC0_FIFO = 0x36);
-    printf("z1:%d",BSC0_FIFO = 0x37);
+    printf("initial:%d",BSC0_FIFO = 0x00);
+    printf("x0:%d\t",BSC0_FIFO = 0x32);
+    printf("x1:%d\n",BSC0_FIFO = 0x33);
+    printf("y0:%d\t",BSC0_FIFO = 0x34);
+    printf("y1:%d\n",BSC0_FIFO = 0x35);
+    printf("z0:%d\t",BSC0_FIFO = 0x36);
+    printf("z1:%d\n",BSC0_FIFO = 0x37);
     /*
      *short tmp;
 	 *int tmpAddr[]={0x32,0x33,0x34,0x35,0x36,0x37};
