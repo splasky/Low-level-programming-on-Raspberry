@@ -39,14 +39,15 @@ build:
 	@mkdir -p build
 	@mkdir -p bin
 
-.PHONY: clean depend tests
+.PHONY: clean depend tests TestADXL345
 
 tests:LDLIBS= -L./build -lRPI
 tests:$(TEST)
 	sh ./tests/runtests.sh
 valgrind:
 	VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" $(MAKE)
-	
+TestADXL345:
+	$(CC) $(FLAGS) $(INCLUDES) ./bin/MainADXL345.c $(OBJS) -o ./bin/testADXL345
 #$(MAIN): $(OBJS)
 #	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
