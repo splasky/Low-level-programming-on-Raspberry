@@ -4,3 +4,4 @@ src/*.log
 *.a
 *.so
 *.swp
+bin/*
