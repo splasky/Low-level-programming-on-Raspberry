@@ -1,7 +1,11 @@
 # 'make depend' use makedepend to automatically generate dependencies
-CC = gcc
-FLAGS = -g -Wall -std=c99 -Wextra
+ARCH :=arm
 
+ifeq ($(ARCH),arm)
+CC :=arm-unknown-linux-gnueabi-gcc
+else
+CC :=gcc
+endif
 # define any directories containing header files
 INCLUDES = -Isrc/ #-I/home/newhall/include -I../include 
 
