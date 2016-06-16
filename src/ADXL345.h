@@ -11,6 +11,6 @@
 
 void ADXL345_Read(short *accData);
 void ADXL345_Init(void);
-void ADXL345_SetRegister(unsigned char regAddr, unsigned char regValue);
+void ADXL345_SetRegister(unsigned const char regAddr, unsigned const char regValue);
 
 #endif

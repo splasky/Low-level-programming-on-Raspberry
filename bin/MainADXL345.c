@@ -15,6 +15,7 @@ int main(int argc, char **argv)
         printf("Failed to map the physical GPIO registers into the vitural memory space.\n");
         return -1;
     }
+
     i2c_init();
 		
     ADXL345_Init();

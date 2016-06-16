@@ -6,13 +6,13 @@ void ADXL345_Init(void)
     ADXL345_SetRegister(POWER_CTL,POWER_CTL_DATA);
 }
 
-void ADXL345_SetRegister(unsigned char regAddr, unsigned char regValue)
+void ADXL345_SetRegister(unsigned const char regAddr,unsigned const char regValue)
 {
     BSC0_A = ADXL345_ADDR;
 
     BSC0_DLEN = 2;
-    BSC0_FIFO = (unsigned char)regAddr;
-    BSC0_FIFO = (unsigned char)regValue;
+    BSC0_FIFO = (unsigned const char)regAddr;
+    BSC0_FIFO = (unsigned const char)regValue;
 
     BSC0_S = CLEAR_STATUS; // Reset status bits
     BSC0_C = START_WRITE;  // Start write
