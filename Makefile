@@ -28,18 +28,15 @@ $(TARGET): build $(OBJS)
 	ar rcs $@ $(OBJS)
 	ranlib $@
 
-all: $(TARGET) tests 
+all: $(TARGET) 
 	@ echo compile finish
 
 build:
 	@mkdir -p build
 	@mkdir -p bin
 
-.PHONY: clean depend tests TestADXL345 Up
+.PHONY: clean depend TestADXL345 Up
 
-tests:LDLIBS= -L./build -lRPI
-tests:$(TEST)
-	sh ./tests/runtests.sh
 valgrind:
 	VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" $(MAKE)
 
