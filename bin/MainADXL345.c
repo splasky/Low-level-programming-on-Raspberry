@@ -25,18 +25,11 @@ int main(int argc, char **argv)
 	dump_bsc_status();
     
     short accData[3];
-
-    int i=0;
-    while(i<10)
-    {
-        // Read ADXL345 sensor
-        ADXL345_Read(&accData[0]);
-        printf("Acclerometer x: %d\t",accData[0]);        
-        printf("Acclerometer y: %d\t",accData[1]);        
-        printf("Acclerometer z: %d\t\n",accData[2]);   
-        sleep(1);  
-        i++;   
-    }
+    // Read ADXL345 sensor
+    ADXL345_Read(&accData[0]);
+    printf("Acclerometer x: %d\t",accData[0]);        
+    printf("Acclerometer y: %d\t",accData[1]);        
+    printf("Acclerometer z: %d\t\n",accData[2]);   
     
     unmap_peripheral(&gpio);
 	unmap_peripheral(&bsc0);
