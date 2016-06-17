@@ -15,10 +15,6 @@ LFLAGS = # -L/home/newhall/lib -L../lib
 # define any libraries to link into executable
 LIBS = build/-lRPI # -lmylib -lm 
 
-# define test source
-TEST_SRC = $(wildcard tests/*_tests.c)
-TEST = $(patsubst %.c,%,$(TEST_SRC)) 
-
 TARGET = build/libRPI.a
 
 SRCS = $(wildcard src/*.c)
@@ -33,7 +29,7 @@ $(TARGET): build $(OBJS)
 	ranlib $@
 
 all: $(TARGET) tests 
-	@ echo simple compiler named ADXL345 has been compiled
+	@ echo compile finish
 
 build:
 	@mkdir -p build
@@ -46,9 +42,12 @@ tests:$(TEST)
 	sh ./tests/runtests.sh
 valgrind:
 	VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" $(MAKE)
+
 TestADXL345:
 	$(CC) $(FLAGS) $(INCLUDES) ./bin/MainADXL345.c $(OBJS) -o ./bin/testADXL345
 	make Up
+
+# upload execte file to raspberry
 Up:
 	scp bin/testADXL345 Rpi3:~/workspace/rpi/bin 
 #$(MAIN): $(OBJS)
