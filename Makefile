@@ -48,7 +48,7 @@ valgrind:
 	VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" $(MAKE)
 TestADXL345:
 	$(CC) $(FLAGS) $(INCLUDES) ./bin/MainADXL345.c $(OBJS) -o ./bin/testADXL345
-
+	make Up
 Up:
 	scp bin/testADXL345 Rpi3:~/workspace/rpi/bin 
 #$(MAIN): $(OBJS)
