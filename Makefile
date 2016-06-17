@@ -35,18 +35,17 @@ build:
 	@mkdir -p build
 	@mkdir -p bin
 
-.PHONY: clean depend TestADXL345 Up
+.PHONY: clean depend test up help
 
-valgrind:
-	VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" $(MAKE)
-
-TestADXL345:
-	$(CC) $(FLAGS) $(INCLUDES) ./bin/MainADXL345.c $(OBJS) -o ./bin/testADXL345
-	make Up
+test:
+	$(CC) $(FLAGS) $(INCLUDES) ./bin/MainADXL345.c $(OBJS) -o ./bin/test_ADXL345
+	$(CC) $(FLAGS) $(INCLUDES) ./bin/blink.c $(OBJS) -o ./bin/test_blink
+	#make up
 
 # upload execte file to raspberry
-Up:
-	scp bin/testADXL345 Rpi3:~/workspace/rpi/bin 
+up:
+	scp bin/test_ADXL345 Rpi3:~/workspace/rpi/bin 
+	scp bin/test_blink Rpi3:~/workspace/rpi/bin 
 #$(MAIN): $(OBJS)
 #	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
@@ -55,7 +54,12 @@ Up:
 
 clean:
 	rm -rf build $(OBJS) $(TESTS)
-	rm -f tests/tests.log
+	rm -f bin/*
 depend:
 	makedepend $(INCLUDES) $^
 
+help:
+	@echo "all   : compile to object file"
+	@echo "test  : generate test file"
+	@echo "clean : clean project"
+	@echo "up    : upload file to raspberrypi 3"
