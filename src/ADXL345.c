@@ -3,7 +3,7 @@
 void ADXL345_Init(void)
 {
     BSC0_S = CLEAR_STATUS;	// Reset status bits (see #define)
-    BSC0_C = BSC_C_CLEAR; 
+    BSC0_C = BSC_C_CLEAR;   // Important
     ADXL345_SetRegister(DATA_FORMAT,DATA_FORMAT_DATA);
     ADXL345_SetRegister(POWER_CTL,POWER_CTL_DATA);
 }
