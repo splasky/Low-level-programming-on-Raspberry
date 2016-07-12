@@ -40,12 +40,12 @@ build:
 test:
 	$(CC) $(FLAGS) $(INCLUDES) ./test/MainADXL345.c $(OBJS) -o ./bin/test_ADXL345
 	$(CC) $(FLAGS) $(INCLUDES) ./test/blink.c $(OBJS) -o ./bin/test_blink
+	$(CC) $(FLAGS) $(INCLUDES) ./test/grating.c $(OBJS) -o ./bin/test_grating
 	@echo "make test file complete"
 
 # upload execte file to raspberry
 up:
-	scp bin/test_ADXL345 Rpi3:~/workspace/rpi/bin 
-	scp bin/test_blink Rpi3:~/workspace/rpi/bin 
+	scp -r ../rpi Rpi3:~/workspace 
 #$(MAIN): $(OBJS)
 #	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
