@@ -7,8 +7,8 @@ uint32_t Grating_Read(void){
        return -1;
    }
     INP_GPIO(17);
-    OUT_GPIO(17);
-    printf("%d",GPIO_SET=1<<17); 
+    uint32_t re = GPIO_GET(17);
+    printf("%d",re?1:0); 
     return 0;
 }
 

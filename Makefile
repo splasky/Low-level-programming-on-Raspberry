@@ -38,9 +38,9 @@ build:
 .PHONY: clean depend test up help
 
 test:
-	$(CC) $(FLAGS) $(INCLUDES) ./test/MainADXL345.c $(OBJS) -o ./bin/test_ADXL345
-	$(CC) $(FLAGS) $(INCLUDES) ./test/blink.c $(OBJS) -o ./bin/test_blink
-	$(CC) $(FLAGS) $(INCLUDES) ./test/grating.c $(OBJS) -o ./bin/test_grating
+	$(CC) $(FLAGS) -ggdb $(INCLUDES) ./test/MainADXL345.c $(OBJS) -o ./bin/test_ADXL345
+	$(CC) $(FLAGS) -ggdb $(INCLUDES) ./test/blink.c $(OBJS) -o ./bin/test_blink
+	$(CC) $(FLAGS) -ggdb $(INCLUDES) ./test/grating.c $(OBJS) -o ./bin/test_grating
 	@echo "make test file complete"
 
 # upload execte file to raspberry
